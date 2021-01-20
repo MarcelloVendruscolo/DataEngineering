@@ -1,0 +1,2 @@
+This is just a test text file for the first assignment of the course Data Engineering.
+The purpose of this text file is just to familiarise students with Git.
