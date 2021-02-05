@@ -11,13 +11,13 @@ public class FirstLetterCount {
     public static class Map extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> {
         private final static IntWritable one = new IntWritable(1);
         private Text word = new Text();
-	private String a_word;
+	    private String a_word;
 	    
         public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
             String line = value.toString();
             StringTokenizer tokenizer = new StringTokenizer(line);
             while (tokenizer.hasMoreTokens()) {
-		this.a_word = tokenizer.nextToken();
+		    this.a_word = tokenizer.nextToken();
                 word.set(first_letter(lowerCase(this.a_word)));
                 output.collect(word, one);
             }
