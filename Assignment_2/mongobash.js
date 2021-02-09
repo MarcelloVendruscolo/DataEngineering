@@ -5,7 +5,7 @@ var mapper = function() {
     var map_pronouns = new Map()
     var list_pronouns = ['han', 'hon', 'hen', 'den', 'det', 'denna', 'denne'];
     list_pronouns.forEach(function(pronoun) {
-        map_pronouns.set(pronoun, 0);
+        map_pronouns.put(pronoun, 0);
     })
     var tweet_text = this.text
     for (let pronoun of map_pronouns.keys()) {
@@ -13,7 +13,7 @@ var mapper = function() {
         let re = new RegExp('\\b' +pronoun+ '\\b', 'i');
         match = tweet_text.match(re)
         if (match !== null) {
-            map_pronouns.set(pronoun, 1)
+            map_pronouns.put(pronoun, 1)
         }
         emit(pronoun, map_pronouns.get(pronoun));
     }
