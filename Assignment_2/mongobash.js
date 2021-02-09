@@ -29,4 +29,4 @@ var reducer = function (key,values) {
 }
 
 db.tweets.mapReduce(mapper, reducer, { query: { }, out: "pronouns_count" })
-printjson(db.pronouns_count.find().pretty())
+print(db.pronouns_count.find())
