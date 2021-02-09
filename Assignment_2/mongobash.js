@@ -1,18 +1,23 @@
+conn = new Mongo();
+db = conn.getDB('tweets_db');
+
 var mapper = function() {
-    var pronouns = ["HAN", "HON", "HEN", 'DEN', 'DET', 'DENNA', 'DENNE'];
-    db.tweets.createIndex({ text: "text" });
-    if (this.text) {
-        for (var counter = 0; counter < pronouns.length; counter++) {
-            var match = 0;
-            match = this.find( { $text: { $search: "\"" +pronouns[counter]+ "\"" } }).count();
-            if (match !== 0) {
-                emit(pronouns[counter], 1);
-            } else {
-                emit(pronouns[counter], 0);
-            }
+    var map_pronouns = new Map()
+    var list_pronouns = ['han', 'hon', 'hen', 'den', 'det', 'denna', 'denne'];
+    list_pronouns.forEach(function(pronoun) {
+        map_pronouns.set(pronoun, 0);
+    })
+    var tweet_text = this.text
+    for (let pronoun of map_pronouns.keys()) {
+        var match = 0;
+        let re = new RegExp('\\b' +pronoun+ '\\b', 'i');
+        match = tweet_text.match(re)
+        if (match !== null) {
+            map_pronouns.set(pronoun, 1)
         }
-        emit('tweets_count', 1);
+        emit(pronoun, map_pronouns.get(pronoun));
     }
+    emit('tweets_count', 1);
 }
 var reducer = function (key,values) {
     return Array.sum(values);
