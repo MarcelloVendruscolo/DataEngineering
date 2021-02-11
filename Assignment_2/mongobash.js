@@ -6,9 +6,9 @@ var mapper = function() {
     var list_pronouns = [{pronoun:'han', count:0}, {pronoun:'hon', count:0}, {pronoun:'hen', count:0}, {pronoun:'den', count:0}, {pronoun:'det', count:0}, {pronoun:'denna', count:0}, {pronoun:'denne', count:0}];
 
     list_pronouns.forEach(function(object) {
-        var match = 0;
-        let re = new RegExp('\\b' +object.pronoun+ '\\b', 'i');
-        match = tweet_text.match(re);
+        var expression = "\\b" +object.pronoun+ "\\b";
+        var re = new RegExp(expression, 'i');
+        var match = tweet_text.match(re);
         if (match !== null) {
             object.count = 1;
         }
