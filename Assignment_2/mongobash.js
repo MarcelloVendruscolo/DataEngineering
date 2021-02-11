@@ -3,14 +3,7 @@ db = conn.getDB('tweets_db');
 
 var mapper = function() {
     var tweet_text = this.text;
-
-    var list_pronouns = [{pronoun:'han', count:0},
-    {pronoun:'hon', count:0},
-    {pronoun:'hen', count:0},
-    {pronoun:'den', count:0},
-    {pronoun:'det', count:0},
-    {pronoun:'denna', count:0},
-    {pronoun:'denne', count:0}];
+    var list_pronouns = [{pronoun:'han', count:0}, {pronoun:'hon', count:0}, {pronoun:'hen', count:0}, {pronoun:'den', count:0}, {pronoun:'det', count:0}, {pronoun:'denna', count:0}, {pronoun:'denne', count:0}];
 
     list_pronouns.forEach(function(object) {
         var match = 0;
