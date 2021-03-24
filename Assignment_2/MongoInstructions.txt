@@ -1,0 +1,9 @@
+Following are some instructions to run the MongoDB program and obtain the results:
+
+1. Install MongoDB Community locally according to https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+2. Start MongoDB with: sudo systemctl start mongod
+3. Verify MongoDB has successfully started with: sudo systemctl status mongod
+4. Run the mongodb.py file with: python3 /location/to/mongodb.py (requires pymongo installed)
+5. Create an empty file (mongooutput.json) where the output will be written to
+6. Run the mongobash.js file with: mongo --quiet tweets_db /localtion/to/mongobash.js > /location/to/mongooutput.json
+7. Stop MongoDB with: sudo systemctl stop mongod
