@@ -4,7 +4,8 @@ import csv
 import matplotlib
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('/Users/marcellovendruscolo/Documents/vscode-workspace/DataEngineering/Assignment_2/part-00000', sep='\t', quoting=csv.QUOTE_NONE, encoding='utf-8', header=None)
+FILE_DIRECTORY = '/Users/marcellovendruscolo/Documents/vscode-workspace/DataEngineering/Assignment_2/modified_wordcount_part-00000'
+df = pd.read_csv(FILE_DIRECTORY, sep='\t', quoting=csv.QUOTE_NONE, encoding='utf-8', header=None)
 df.columns = ['first_letter', 'frequency']
 
 index_a = df['first_letter'].loc[lambda x: x=='a'].index[0]
@@ -17,10 +18,10 @@ width = 0.5
 frequency = np.array(df['frequency'][index_a:index_z+1])
 
 fig, ax = plt.subplots()
-rects1 = ax.bar(x, frequency, width, color='red')
+rects1 = ax.bar(x, frequency, width=0.3, color='red')
 
 ax.set_ylabel('Counts')
-ax.set_title('FirstLetter Word Count')
+ax.set_title('Modified (FirstLetter) Word Count')
 ax.set_xticks(x)
 ax.set_xticklabels(letters)
 
@@ -34,8 +35,6 @@ def autolabel(rects):
                     textcoords="offset points",
                     ha='center', va='bottom')
 
-
 autolabel(rects1)
 fig.tight_layout()
-
 plt.show()
