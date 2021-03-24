@@ -4,7 +4,8 @@ import csv
 import matplotlib
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('/Users/marcellovendruscolo/Documents/vscode-workspace/DataEngineering/Assignment_2/tweetres', sep='\t', quoting=csv.QUOTE_NONE, encoding='utf-8', header=None)
+FILE_DIRECTORY = '/Users/marcellovendruscolo/Documents/vscode-workspace/DataEngineering/Assignment_2/tweet_pronoun_part-00000'
+df = pd.read_csv(FILE_DIRECTORY, sep='\t', quoting=csv.QUOTE_NONE, encoding='utf-8', header=None)
 
 index_total_tweets = df[0].loc[lambda x: x=='total_tweets'].index[0]
 total_tweets = df[1][index_total_tweets]
@@ -23,7 +24,7 @@ fig, ax = plt.subplots()
 rects1 = ax.bar(x, frequency, width, color='black')
 
 ax.set_ylabel('Counts')
-ax.set_title('Normalised pronoun count in Tweets')
+ax.set_title('Normalised pronoun count in tweets (using Hadoop)')
 ax.set_xticks(x)
 ax.set_xticklabels(pronouns)
 
@@ -31,15 +32,12 @@ def autolabel(rects):
     """Attach a text label above each bar in *rects*, displaying its height."""
     for rect in rects:
         height = rect.get_height()
-        ax.annotate('{}'.format(height),
+        ax.annotate('{0:.2f}'.format(height),
                     xy=(rect.get_x() + rect.get_width(), height),
                     xytext=(0, 3),  # 3 points vertical offset
                     textcoords="offset points",
                     ha='center', va='bottom')
 
-
 autolabel(rects1)
 fig.tight_layout()
-
 plt.show()
-
