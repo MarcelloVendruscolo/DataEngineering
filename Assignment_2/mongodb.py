@@ -15,12 +15,12 @@ except:
     sys.stderr.write("Could not connect to MongoDB")
     sys.exit(1)
 
-#match = re.compile('tweets_*',re.IGNORECASE)
+match = re.compile('tweets_*',re.IGNORECASE)
 entries = os.listdir(TWEETS_DIRECTORY)
 
-for entry in entries:   
+for entry in entries:
     #if (match.search(entry) is not None):
-     if (entry == 'tweets_1.txt'):
+    if (entry == 'tweets_0.txt' or entry == 'tweets_1.txt'):
         with open(entry, 'r') as f:
             list_tweets = []
             print("Inserting tweets of {0:s} in MongoDB".format(entry))
