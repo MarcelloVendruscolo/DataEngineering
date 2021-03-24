@@ -8,6 +8,7 @@ import org.apache.hadoop.mapred.*;
 import org.apache.hadoop.util.*;
 
 public class FirstLetterCount {
+
     public static class Map extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> {
         private final static IntWritable one = new IntWritable(1);
         private Text word = new Text();
@@ -23,33 +24,32 @@ public class FirstLetterCount {
             }
         }
 
-	public String lowerCase (String word) {
-		if (word.length() != 0 | word != null) {
-			char[] letters = new char[word.length()];
-			for (int index = 0; index < word.length(); index++) {
-				letters[index] = word.charAt(index);
-			}
-                	if (Character.isLetter(letters[0])) {
-                        	letters[0] = Character.toLowerCase(letters[0]);
-                	}
-                	String minuscleWord = new String(letters);
-                	return minuscleWord;
-		}
-		return word;
-	}
-
-	public String first_letter (String word) {
-		if (word.length() != 0 | word != null) {
-			char[] letters = new char[word.length()];
-                        for (int index = 0; index < word.length(); index++) {
-                                letters[index] = word.charAt(index);
+        public String lowerCase (String word) {
+            if (word.length() != 0 | word != null) {
+                char[] letters = new char[word.length()];
+                for (int index = 0; index < word.length(); index++) {
+                    letters[index] = word.charAt(index);
+                }
+                        if (Character.isLetter(letters[0])) {
+                                letters[0] = Character.toLowerCase(letters[0]);
                         }
-			String first_letter = Character.toString(letters[0]);
-			return first_letter;
-		}
-		return word;
-	}
+                        String minuscleWord = new String(letters);
+                        return minuscleWord;
+            }
+            return word;
+        }
 
+        public String first_letter (String word) {
+            if (word.length() != 0 | word != null) {
+                char[] letters = new char[word.length()];
+                            for (int index = 0; index < word.length(); index++) {
+                                    letters[index] = word.charAt(index);
+                            }
+                String first_letter = Character.toString(letters[0]);
+                return first_letter;
+            }
+            return word;
+        }
     }
 	
     public static class Reduce extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
