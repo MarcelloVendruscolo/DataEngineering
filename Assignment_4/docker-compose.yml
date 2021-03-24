@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  spark-master:
+    image: "mpietro/spark-master:latest"
+    container_name: spark-master
+    ports:
+      - "8080:8080"
+    networks:
+      - "spark-net"
+  spark-worker:
+    image: "mpietro/spark-worker:latest"
+    container_name: spark-worker
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081"
+    networks:
+      - "spark-net"
+
+networks:
+  spark-net:
+    driver: bridge
