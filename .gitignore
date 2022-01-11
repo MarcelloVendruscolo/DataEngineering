@@ -351,3 +351,4 @@ MigrationBackup/
 
 # Virtual Environment
 /dataEngineering
+.ipynb_checkpoints
